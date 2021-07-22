@@ -1,31 +1,55 @@
 package com.BridgeLabs.Stack;
 
-import com.BridgeLabs.Linklist.*;
+public class Stack<T> {
+	static int length = 0;
+	Node head;
 
-public class Stack {
-	LinkList list = new LinkList();
-
-	public <T> void push(T data) {
-		list.insertAtBegin(data);
+	class Node {
+		T data;
+		Node next;
 	}
 
-	public void pop() {
-		list.deleatAtBeging();
+	public void push(T data) {
+		Node node = head;
+		if (node == head) {
+			head = node;
+			length++;
+		} else {
+			Node newNode = new Node();
+			newNode.data = data;
+			newNode.next = null;
+			head = newNode;
+			head.next = node;
+			length++;
+		}
 	}
 
-	public <T> Object peek() {
-		return list.displayHead();
-
+	public Object pop() {
+		Node node = head;
+		if (head == null)
+			return null;
+		head = head.next;
+		length--;
+		return node.data;
 	}
 
-	public boolean isEmpty() {
-		if (list.size() == 0) {
-			return true;
-		} else
-			return false;
+	public T pop1() {
+		Node node = head;
+
+		return head.data;
+	}
+
+	public int size() {
+		return length;
 	}
 
 	public void display() {
-		list.display();
+		// TODO Auto-generated method stub
+		Node node = head;
+		while (node.next != null) {
+			System.out.println(node.data);
+			node = node.next;
+		}
 	}
+
 }

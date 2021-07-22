@@ -1,6 +1,6 @@
-package com.BridgeLabs.Linklist;
+package com.BridgeLabs.LinkList;
 
-public class LinkList {
+public class LinkList<T> {
 	Node head;
 
 	public class Node {
@@ -8,14 +8,13 @@ public class LinkList {
 		Node next;
 	}
 
-	public <T> void insertAtEnding(T data) {
+	public <T> void append(T data) {
 		Node node = new Node();
 		node.data = data;
 		node.next = null;
 		if (head == null) {
 			head = node;
-		} 
-		else {
+		} else {
 			Node check = head;
 			while (check.next != null) {
 				check = check.next;
@@ -29,10 +28,9 @@ public class LinkList {
 		while (node != null) {
 			System.out.println(node.data);
 			node = node.next;
-			
 
 		}
-		//System.out.println(node.data);
+		// System.out.println(node.data);
 
 	}
 
@@ -44,7 +42,7 @@ public class LinkList {
 		Node node = new Node();
 		node = head;
 		while (node.next.next != null) {
-			node=node.next;
+			node = node.next;
 		}
 		node.next = null;
 	}
@@ -88,6 +86,7 @@ public class LinkList {
 			}
 		}
 	}
+
 	public int size() {
 		Node node = new Node();
 		node = head;
@@ -97,12 +96,18 @@ public class LinkList {
 			node = node.next;
 		}
 		count++;
-		//System.out.println("the length of the link list is "+count++);
 		return count;
 	}
-	public  Object displayHead() {
-		//System.out.println(head.data);
-		return head.data;
-	}
 
+	public Node search(T key) {
+		Node node = head;
+		while (node.next != null) {
+			if (node.data == key)
+				return node;
+		}
+		if (node.data == key)
+			return node;
+
+		return null;
+	}
 }
